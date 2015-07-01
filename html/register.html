@@ -1,0 +1,12 @@
+<div class="input-group margin-auto">
+    <h1>REGSTER.</h1>
+    <input class="form-control" ng-model="user.email" regex="\w+@\w+?\.\w{1,4}$" check="user" message="이메일 형식이 맞지 않습니다."
+           placeholder="이메일">
+    <input class="form-control" ng-model="user.password" regex="\w{4,}" check="user" message="비밀번호는 4자이상 입니다."
+           placeholder="비밀번호" type="password">
+    <input class="form-control" ng-model="user.name" regex=".{2,}" check="user" message="이름은 2자이상 입니다."
+           placeholder="이름">
+
+    <div class="btn btn-default" ng-click="register()">회원가입</div>
+    <div class="btn btn-default" ng-click="login()">로그인</div>
+</div>
