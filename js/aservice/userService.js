@@ -1,0 +1,3 @@
+app.service('$user', function () {
+
+});

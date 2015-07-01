@@ -27,9 +27,20 @@ $mapping('user.register', function (user, response) {
 });
 
 $mapping('user.login', function (user, response) {
-    db.user.findOne(user, function (err, result) {
+    var find = {};
+    find.email = user.email;
+    db.user.findOne(find, function (err, result) {
         var res = {};
-        res.err = err;
+        if (result == null) {
+            res.err = "가입하지 않은 이메일입니다.";
+            response(res);
+            return;
+        }
+        if (result.password != user.password) {
+            res.err = "패스워드가 다릅니다.";
+            response(res);
+            return;
+        }
         res.result = result;
         response(res);
     });

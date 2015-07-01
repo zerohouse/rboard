@@ -1,6 +1,6 @@
-app.controller('registerController', function ($scope, $req) {
+app.controller('registerController', function ($scope, $req, $user) {
 
-    $scope.user = {};
+    $scope.user = $user;
 
     $scope.register = function () {
         $req('user.register', $scope.user, function (response) {
@@ -9,8 +9,12 @@ app.controller('registerController', function ($scope, $req) {
     };
 
     $scope.login = function () {
-        $req('user.login', $scope.user, function (response) {
-            console.log(response);
+        $req('user.login', $scope.user, function (res) {
+            if (res.err) {
+                alert(res.err);
+                return;
+            }
+            $user.logged = true;
         });
     };
 
