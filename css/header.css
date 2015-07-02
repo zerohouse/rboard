@@ -8,8 +8,8 @@
     margin-bottom: 5px;
 }
 
-.left-icon {
-    float: left;
+.header-icon {
+    position: absolute;
     font-size: 35px;
     line-height: 50px;
 }
@@ -23,24 +23,12 @@
     height: 35px;
     width: 35px;
     display: block;
-    float: right;
+    position: absolute;
+    right: 10px;
     background-image: url('/img/profile.png');
     background-size: 100% 100%;
     margin-top: -40px;
     border-radius: 50%;
-}
-
-.input {
-    margin: 7px 5px;
-    width: 90%;
-    border: none;
-    outline: none;
-}
-
-.form {
-    padding: 5px;
-    margin: 25px 15px;
-    border: 1px solid #000;
 }
 
 .search-icon {

@@ -5,11 +5,13 @@ var io = require('socket.io')(http);
 var path = require('path');
 
 var db = {};
+
 require('mongodb').MongoClient.connect("mongodb://localhost:27017/rboard", function (err, connected) {
     if (!err) {
         console.log("rboard connected");
     }
     db.user = connected.collection('user');
+    db.post = connected.collection('post');
 });
 
 
@@ -46,6 +48,23 @@ $mapping('user.login', function (user, response) {
     });
 });
 
+$mapping('user.register', function (user, response) {
+    db.post.insertOne(user, function (err, result) {
+        var res = {};
+        res.err = err;
+        res.result = result;
+        response(res);
+    });
+});
+
+$mapping('post.write', function (post, response) {
+    db.post.insertOne(post, function (err, result) {
+        var res = {};
+        res.err = err;
+        res.result = result;
+        response(res);
+    });
+});
 
 io.on('connection', function (socket) {
     socket.on('$req', function (req) {

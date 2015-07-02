@@ -1,0 +1,14 @@
+<header>
+    <div class="top-fix">
+        <div class="header-icon"><i class="fa fa-bars"></i>
+        </div>
+        <div class="title">{{state.title || stateParams.url}}</div>
+        <div class="profile"></div>
+    </div>
+    <input class="input" placeholder="검색어를 입력하세요"><i class="fa fa-search search-icon"></i>
+
+    <div class="input">랜덤보드</div>
+</header>
+<div ng-repeat="title in titles">{{title}}</div>
+<div ui-view></div>
+<div ui-sref="write({url: stateParams.url})">글쓰기</div>
