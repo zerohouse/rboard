@@ -3,7 +3,6 @@ var $mapping = function (url, fn) {
 };
 
 io.on('connection', function (socket) {
-    console.log(1);
     logger.debug(socket.session);
     socket.on('$req', function (req) {
         var promise = new Promise(function (ok) {

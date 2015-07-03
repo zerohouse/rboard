@@ -5,6 +5,7 @@ var express = require('express'),
     path = require('path'),
     mongoDB = require('mongodb'),
     session = require('express-session'),
+    cookie = require('cookie'),
     cookieParser = require('cookie-parser'),
     winston = require('winston'),
     sessionStore = new session.MemoryStore();
@@ -66,32 +67,16 @@ var db = {};
 
 mongoDB.MongoClient.connect("mongodb://localhost:27017/rboard", function (err, connected) {
     if (!err) {
-        console.log("rboard connected");
+        logger.info("db connected");
     }
     db.user = connected.collection('user');
     db.post = connected.collection('post');
-});
-app.use(function (req, res, next) {
-    res.charset = "utf-8";
-    next();
-});
-
-app.use('/node_modules', express.static('node_modules'));
-app.use('/client', express.static('client'));
-app.use('/socket.io', express.static('node_modules/socket.io/node_modules/socket.io-client'));
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname + '/client/index.html'));
-});
-
-http.listen(80, function () {
-    console.log('listening on *:80');
 });
 var $mapping = function (url, fn) {
     $mapping[url] = fn;
 };
 
 io.on('connection', function (socket) {
-    console.log(1);
     logger.debug(socket.session);
     socket.on('$req', function (req) {
         var promise = new Promise(function (ok) {
@@ -141,7 +126,22 @@ $mapping('user.login', function (user, response, socket) {
         }
         res.result = result;
         socket.session.user = result;
-        sessionStorage.set(socket.sid, socket.session);
+        sessionStore.set(socket.sid, socket.session);
         response(res);
     });
+});
+app.use(function (req, res, next) {
+    res.charset = "utf-8";
+    next();
+});
+
+app.use('/node_modules', express.static('node_modules'));
+app.use('/client', express.static('client'));
+app.use('/socket.io', express.static('node_modules/socket.io/node_modules/socket.io-client'));
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname + '/client/index.html'));
+});
+
+http.listen(80, function () {
+    logger.info('listening on *:80');
 });

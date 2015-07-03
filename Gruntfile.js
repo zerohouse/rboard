@@ -32,6 +32,8 @@ module.exports = function (grunt) {
             server: {
                 src: [
                     'server/**/*.js',
+                    '!server/express.js',
+                    'server/express.js'
                 ],
                 dest: 'app.js'
             }

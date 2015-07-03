@@ -24,7 +24,7 @@ $mapping('user.login', function (user, response, socket) {
         }
         res.result = result;
         socket.session.user = result;
-        sessionStorage.set(socket.sid, socket.session);
+        sessionStore.set(socket.sid, socket.session);
         response(res);
     });
 });

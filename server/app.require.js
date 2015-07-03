@@ -5,6 +5,7 @@ var express = require('express'),
     path = require('path'),
     mongoDB = require('mongodb'),
     session = require('express-session'),
+    cookie = require('cookie'),
     cookieParser = require('cookie-parser'),
     winston = require('winston'),
     sessionStore = new session.MemoryStore();
