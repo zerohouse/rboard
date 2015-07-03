@@ -5,8 +5,13 @@
         <div class="title">{{state.title || stateParams.url}}</div>
         <div class="profile"></div>
     </div>
-    <input class="input" placeholder="검색어를 입력하세요"><i class="fa fa-search search-icon"></i>
-
+    <input class="input" ng-model="keyword" ng-keydown="keyPress($event)" placeholder="검색어를 입력하세요"><i
+        class="fa fa-search search-icon"></i>
+    <ul class="search-results" ng-show="results.length!=0">
+        <li ng-repeat="result in results" ng-click="move()" ng-mouseover="selectResult(result)"
+            ng-class="{'selected':result == select}">
+            <span>{{result.board}}</span><span class="badge">{{result.count}}</span></li>
+    </ul>
     <div class="input">랜덤보드</div>
 </header>
 <div ng-repeat="title in titles">{{title}}</div>
