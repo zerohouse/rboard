@@ -6,18 +6,18 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('register', {
             url: "/page/register",
             controller: 'registerController',
-            templateUrl: "/html/register.html",
+            templateUrl: "/client/html/register.html",
             title: "회원가입"
         })
         .state('board', {
             url: "/:url",
             controller: 'boardController',
-            templateUrl: "/html/board.html"
+            templateUrl: "/client/html/board.html"
         })
         .state('write', {
             url: "/:url/write",
             controller: 'writeController',
-            templateUrl: "/html/write.html",
+            templateUrl: "/client/html/write.html",
             title: "글쓰기"
         });
 });

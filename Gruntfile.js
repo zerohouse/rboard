@@ -13,19 +13,27 @@ module.exports = function (grunt) {
                 banner: '/* <%= grunt.template.today("yyyy-mm-dd") %> */ ' //파일의 맨처음 붙는 banner 설정
             },
             build: {
-                src: 'js/js.js', //uglify할 대상 설정
-                dest: 'js/js.min.js' //uglify 결과 파일 설정
+                src: 'client/js/js.js', //uglify할 대상 설정
+                dest: 'client/js/js.min.js' //uglify 결과 파일 설정
             }
         },
         //concat 설정
         concat: {
-            basic: {
+            client: {
                 src: [
-                    'js/**/*.js',
-                    '!js/js.js',
-                    '!js/js.min.js',
+                    'client/js/*.js',
+                    'client/js/service/*.js',
+                    'client/js/**/*.js',
+                    '!client/js/js.js',
+                    '!client/js/js.min.js',
                 ],
-                dest: 'js/js.js' //concat 결과 파일
+                dest: 'client/js/js.js'
+            },
+            server: {
+                src: [
+                    'server/**/*.js',
+                ],
+                dest: 'app.js'
             }
         },
 
@@ -35,21 +43,22 @@ module.exports = function (grunt) {
             },
             all: {
                 src: [
-                    "css/**/*.css",
-                    "!css/css.css"
+                    "client/css/**/*.css",
+                    "!client/css/css.css"
                 ],
-                dest: "css/css.css"
+                dest: "client/css/css.css"
             }
         },
 
         watch: {
             scripts: {
                 files: [
-                    'js/**/*.js',
-                    'css/**/*.css',
-                    '!js/js.js',
-                    '!js/js.min.js',
-                    '!css/css.css'
+                    'server/**/*.js',
+                    'client/**/*.css',
+                    '!client/css/css.css',
+                    'client/**/*.js',
+                    '!client/js/js.js',
+                    '!client/js/js.min.js',
                 ],
                 tasks: ['concat', 'uglify', 'concat_css'],
                 options: {

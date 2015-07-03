@@ -25,7 +25,7 @@
     display: block;
     position: absolute;
     right: 10px;
-    background-image: url('/img/profile.png');
+    background-image: url('/client/imgent/img/profile.png');
     background-size: 100% 100%;
     margin-top: -40px;
     border-radius: 50%;
