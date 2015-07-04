@@ -132,11 +132,16 @@ $mapping('post.search', function (keyword, response) {
 
 
 $mapping('post.get', function (req, response) {
+    console.log(1);
     db.post.find({board: req.board}, {
-        "limit": req.limit,
-        "skip": req.skip
+        limit: req.limit,
+        skip: req.skip
     }, function (err, result) {
+        console.log(1);
+        console.log(result);
+        console.log(err);
         response(result);
+
     });
 });
 

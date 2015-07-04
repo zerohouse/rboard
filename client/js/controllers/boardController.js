@@ -27,9 +27,8 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams) 
         });
     });
 
-    $scope.$watch(function () {
-        return $stateParams.url;
-    }, function () {
+
+    $scope.$on("$stateChangeSuccess", function updatePage() {
         var req = {};
         req.board = $stateParams.url;
         req.limit = 5;
@@ -39,6 +38,7 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams) 
             console.log(res);
         });
     });
+
 
     $scope.selectResult = function (select) {
         $scope.select = select;
