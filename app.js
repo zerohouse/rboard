@@ -72,6 +72,8 @@ mongoDB.MongoClient.connect("mongodb://localhost:27017/rboard", function (err, c
     db.user = connected.collection('user');
     db.post = connected.collection('post');
 });
+
+
 var $mapping = function (url, fn) {
     $mapping[url] = fn;
 };
@@ -132,16 +134,11 @@ $mapping('post.search', function (keyword, response) {
 
 
 $mapping('post.get', function (req, response) {
-    console.log(1);
-    db.post.find({board: req.board}, {
-        limit: req.limit,
-        skip: req.skip
-    }, function (err, result) {
-        console.log(1);
-        console.log(result);
-        console.log(err);
+    db.post.find({"board": req.board}, {}, {
+        skip: req.skip,
+        limit: req.limit
+    }).sort({_id: -1}).toArray(function (err, result) {
         response(result);
-
     });
 });
 

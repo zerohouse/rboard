@@ -7,3 +7,4 @@ mongoDB.MongoClient.connect("mongodb://localhost:27017/rboard", function (err, c
     db.user = connected.collection('user');
     db.post = connected.collection('post');
 });
+

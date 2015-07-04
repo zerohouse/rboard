@@ -1,5 +1,16 @@
+<header>
+    <div class="top-fix">
+        <div class="header-icon" ui-sref="board({url: stateParams.url})"><i class="fa fa-arrow-left"></i>
+        </div>
+        <div class="title">
+            <small>{{stateParams.url}}</small>
+            {{state.title}}
+        </div>
+    </div>
+</header>
+
 <div class="input-group margin-auto">
-    <h1>REGSTER.</h1>
+    <h1>B.in</h1>
     <input class="form-control" ng-model="user.email" regex="\w+@\w+?\.\w{1,4}$" check="user" message="이메일 형식이 맞지 않습니다."
            placeholder="이메일">
     <input class="form-control" ng-model="user.password" regex="\w{4,}" check="user" message="비밀번호는 4자이상 입니다."

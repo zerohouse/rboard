@@ -7,6 +7,7 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams) 
             $scope.results = [];
             return;
         }
+
         $req('post.search', $scope.keyword, function (res) {
             if (!check()) {
                 var now = {};
@@ -29,15 +30,31 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams) 
 
 
     $scope.$on("$stateChangeSuccess", function updatePage() {
-        var req = {};
+        var req = $scope.req = {};
         req.board = $stateParams.url;
-        req.limit = 5;
+        req.limit = 3;
         req.skip = 0;
-        $req('post.get', req, function (res) {
-            $scope.titles = res;
-            console.log(res);
-        });
+        req.page = 0;
+        $scope.noMore = false;
+        $scope.getPosts();
     });
+
+    $scope.getPosts = function () {
+        var req = $scope.req;
+        req.skip = req.limit * req.page;
+        $req('post.get', req, function (res) {
+            if ($scope.titles == undefined)
+                $scope.titles = [];
+            if (res.length == 0) {
+                $scope.noMore = true;
+            }
+            res.forEach(function (each) {
+                $scope.titles.push(each);
+            });
+            req.page++;
+            $scope.$apply();
+        });
+    };
 
 
     $scope.selectResult = function (select) {
@@ -68,6 +85,33 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams) 
             case 13:
                 $scope.move();
                 break;
+        }
+    }
+
+    $scope.rand = function () {
+        $req('post.search', "", function (res) {
+            console.log(rand(res));
+            $state.go('board', {url: rand(res)});
+        });
+
+        function rand(arr) {
+            var sum = 0;
+            arr.forEach(function (e) {
+                if (e.board == $stateParams.url)
+                    return;
+                sum += e.count;
+            });
+            var r = Math.random();
+            var range = 0;
+            var result;
+
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i].board == $stateParams.url)
+                    continue;
+                range += arr[i].count / sum;
+                if (r < range)
+                    return arr[i].board;
+            }
         }
     }
 

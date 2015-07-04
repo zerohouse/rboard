@@ -12,8 +12,10 @@
             ng-class="{'selected':result == select}">
             <span>{{result.board}}</span><span class="badge">{{result.count}}</span></li>
     </ul>
-    <div class="input">랜덤보드</div>
+    <div class="input" ng-click="rand()">랜덤보드</div>
 </header>
 <div ng-repeat="title in titles">{{title}}</div>
+<div ng-click="getPosts()" ng-show="!noMore">{{req.page}}더보기</div>
+<div ng-show="noMore">마지막입니다.</div>
 <div ui-view></div>
 <div ui-sref="write({url: stateParams.url})">글쓰기</div>
