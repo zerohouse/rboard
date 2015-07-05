@@ -1,0 +1,52 @@
+
+.form-control {
+    width: 70%;
+    height: 30px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    margin: 10px;
+    outline: none;
+}
+
+.form-control:active, .form-control:focus {
+    border: 1px solid #999;
+}
+
+.btn {
+    width: 70%;
+    height: 30px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    margin: 10px auto;
+    outline: none;
+    line-height: 30px;
+    color: #999;
+}
+
+.btn.active {
+    color: red;
+    border: 1px solid red;
+}
+
+.waring {
+    border: 1px solid red !important;
+}
+
+.warn {
+    border: 1px solid red !important;
+}
+
+.message {
+    font-size: 12px;
+    margin-top: -5px;
+    color: darksalmon;
+}
+
+img.thumbnail{
+    max-width: 150px;
+    max-height: 150px;
+    float: left;
+    margin: 2px;
+}

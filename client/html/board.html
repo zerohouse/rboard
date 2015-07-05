@@ -3,7 +3,10 @@
         <div class="header-icon"><i class="fa fa-bars"></i>
         </div>
         <div class="title">{{state.title || stateParams.url}}</div>
-        <div class="profile"></div>
+        <div class="profile">
+            <span ng-show="user.logged" ng-click="logout()">로그아웃{{user.email}}</span>
+            <span ng-show="!user.logged" ui-sref="login({url: stateParams.url})">로그인</span>
+        </div>
     </div>
     <input class="input" ng-model="keyword" ng-keydown="keyPress($event)" placeholder="검색어를 입력하세요"><i
         class="fa fa-search search-icon"></i>
@@ -14,8 +17,11 @@
     </ul>
     <div class="input" ng-click="rand()">랜덤보드</div>
 </header>
-<div ng-repeat="title in titles">{{title}}</div>
-<div ng-click="getPosts()" ng-show="!noMore">{{req.page}}더보기</div>
+
+<div ng-repeat="article in articles" article="article"></div>
+
+
+<div ng-click="getPosts()" ng-show="!noMore">더보기</div>
 <div ng-show="noMore">마지막입니다.</div>
 <div ui-view></div>
 <div ui-sref="write({url: stateParams.url})">글쓰기</div>

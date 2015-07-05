@@ -16,6 +16,19 @@ app.use(session({
     }
 }));
 
+
+app.use(multer({
+    dest: './client/img/uploads/',
+    rename: function (fieldname, filename) {
+        return Date.now();
+    },
+    onFileUploadStart: function (file) {
+    },
+    onFileUploadComplete: function (file) {
+    }
+}));
+
+
 io.use(function (socket, next) {
     try {
         var data = socket.handshake || socket.request;

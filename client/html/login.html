@@ -14,19 +14,15 @@
     <div class="input-group">
         <input class="form-control" ng-model="user.email" regex="\w+@\w+?\.\w{1,4}$" check="id"
                message="이메일 형식이 맞지 않습니다."
-               placeholder="이메일" ng-class="{'warn':alreadyExistId}">
+               placeholder="이메일" ng-class="{'warn':notExistId}">
 
-        <div class="message" ng-show="alreadyExistId">이미 사용중인 아이디입니다.</div>
+        <div class="message" ng-show="notExistId">가입하지 않은 아이디입니다.</div>
     </div>
     <div class="input-group">
         <input class="form-control" ng-model="user.password" regex="\w{4,}" check="user" message="비밀번호는 4자이상 입니다."
                placeholder="비밀번호" type="password">
     </div>
-    <div class="input-group">
-        <input class="form-control" ng-model="user.name" regex=".{2,}" check="user" message="이름은 2자이상 입니다."
-               placeholder="이름">
-    </div>
 
-    <div class="btn" ng-click="register()" ng-class="{active:check()}">회원가입</div>
-    <div>이미 가입하셨나요? <span ui-sref="login({url: stateParams.url})">여기를 눌러 로그인</span></div>
+    <div class="btn" ng-click="login()" ng-class="{active:check()}">로그인</div>
+    <div>아직 가입하지 않으셨나요? <span ui-sref="register({url: stateParams.url})">여기를 눌러 회원가입</span></div>
 </div>

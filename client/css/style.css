@@ -30,3 +30,8 @@ textarea {
 .border-bottom {
     border-bottom: 1px solid #999;
 }
+
+h1 {
+    font-size: 40px;
+    margin: 40px 0;
+}

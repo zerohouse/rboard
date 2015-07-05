@@ -8,4 +8,6 @@ var express = require('express'),
     cookie = require('cookie'),
     cookieParser = require('cookie-parser'),
     winston = require('winston'),
-    sessionStore = new session.MemoryStore();
+    sessionStore = new session.MemoryStore(),
+    multer = require('multer');
+

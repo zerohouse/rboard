@@ -1,6 +1,12 @@
-$mapping('post.write', function (post, response) {
+$mapping('post.write', function (post, response, socket) {
+    var res = {};
+    if (socket.session.user == undefined) {
+        res.err = "login";
+        response(res);
+        return;
+    }
+    post.writer = socket.session.user.email;
     db.post.insertOne(post, function (err, result) {
-        var res = {};
         res.err = err;
         res.result = result;
         response(res);

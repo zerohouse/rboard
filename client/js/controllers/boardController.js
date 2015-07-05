@@ -1,4 +1,4 @@
-app.controller('boardController', function ($scope, $req, $state, $stateParams) {
+app.controller('boardController', function ($scope, $req, $state, $stateParams, $rand) {
 
     $scope.keyword = "";
 
@@ -43,13 +43,13 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams) 
         var req = $scope.req;
         req.skip = req.limit * req.page;
         $req('post.get', req, function (res) {
-            if ($scope.titles == undefined)
-                $scope.titles = [];
+            if ($scope.articles == undefined)
+                $scope.articles = [];
             if (res.length == 0) {
                 $scope.noMore = true;
             }
             res.forEach(function (each) {
-                $scope.titles.push(each);
+                $scope.articles.push(each);
             });
             req.page++;
             $scope.$apply();
@@ -88,31 +88,6 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams) 
         }
     }
 
-    $scope.rand = function () {
-        $req('post.search', "", function (res) {
-            console.log(rand(res));
-            $state.go('board', {url: rand(res)});
-        });
-
-        function rand(arr) {
-            var sum = 0;
-            arr.forEach(function (e) {
-                if (e.board == $stateParams.url)
-                    return;
-                sum += e.count;
-            });
-            var r = Math.random();
-            var range = 0;
-            var result;
-
-            for (var i = 0; i < arr.length; i++) {
-                if (arr[i].board == $stateParams.url)
-                    continue;
-                range += arr[i].count / sum;
-                if (r < range)
-                    return arr[i].board;
-            }
-        }
-    }
+    $scope.rand = $rand;
 
 });
