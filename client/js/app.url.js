@@ -6,7 +6,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('board', {
             url: "/",
             controller: 'boardController',
-            templateUrl: "/client/html/board.html"
+            templateUrl: "/client/html/board.html",
+            title: "B.in"
         })
         .state('board.list', {
             url: ":url",

@@ -26,3 +26,7 @@
     min-height: 30px;
     display: inline-block;
 }
+
+.article-photo {
+    max-width: 50%;
+}

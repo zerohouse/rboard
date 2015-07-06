@@ -35,3 +35,7 @@ h1 {
     font-size: 40px;
     margin: 40px 0;
 }
+
+[ng-click], [ui-sref] {
+    cursor: pointer;
+}
