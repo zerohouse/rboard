@@ -3,9 +3,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
 
     $stateProvider
-        .state('index', {
+        .state('board', {
             url: "/",
-            templateUrl: "/client/html/index.html"
+            controller: 'boardController',
+            templateUrl: "/client/html/board.html"
+        })
+        .state('board.list', {
+            url: ":url",
+            controller: 'listController',
+            templateUrl: "/client/html/board/list.html"
         })
         .state('register', {
             url: "/:url/register",
@@ -19,16 +25,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "/client/html/login.html",
             title: "로그인"
         })
-        .state('board', {
-            url: "/:url",
-            controller: 'boardController',
-            templateUrl: "/client/html/board.html"
-        })
         .state('write', {
             url: "/:url/write",
             controller: 'writeController',
             templateUrl: "/client/html/write.html",
             title: "글쓰기"
+        })
+        .state('article', {
+            url: "/:url/:articleId",
+            controller: 'articleController',
+            templateUrl: "/client/html/board/article.html"
         });
 });
 

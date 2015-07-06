@@ -1,7 +1,7 @@
 app.factory('$rand', function ($req, $state, $stateParams) {
-    var rand = function () {
+    return function () {
         $req('post.search', "", function (res) {
-            $state.go('board', {url: rand(res)});
+            $state.go('board.list', {url: rand(res)});
         });
 
         function rand(arr) {
@@ -13,7 +13,6 @@ app.factory('$rand', function ($req, $state, $stateParams) {
             });
             var r = Math.random();
             var range = 0;
-            var result;
 
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i].board == $stateParams.url)
@@ -24,5 +23,4 @@ app.factory('$rand', function ($req, $state, $stateParams) {
             }
         }
     };
-    return rand;
 });

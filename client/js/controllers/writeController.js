@@ -36,7 +36,7 @@ app.controller('writeController', function ($scope, $req, $stateParams, $state, 
                     alert(res.err);
                     return;
                 }
-                $state.go('board', {url: $stateParams.url});
+                $state.go('board.list', {url: $stateParams.url});
             });
         }
     };

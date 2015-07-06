@@ -6,6 +6,7 @@ $mapping('post.write', function (post, response, socket) {
         return;
     }
     post.writer = socket.session.user.email;
+    post.date = new Date();
     db.post.insertOne(post, function (err, result) {
         res.err = err;
         res.result = result;
@@ -52,3 +53,28 @@ $mapping('post.get', function (req, response) {
     });
 });
 
+
+$mapping('post.delete', function (articleId, response, socket) {
+    var obj_id = new ObjectID(articleId);
+    if (!socket.session.user) {
+        response("로그인 해주세요.");
+        return;
+    }
+    db.post.remove({_id: obj_id, writer: socket.session.user.email}, function (err, res) {
+        if (res.result.ok == 1) {
+            response(true);
+            return;
+        }
+        var res = {};
+        res.err = "잘못된 접근입니다.";
+        response(res);
+    });
+});
+
+
+$mapping('post.findOne', function (articleId, response) {
+    var obj_id = new ObjectID(articleId);
+    db.post.findOne({_id: obj_id}, function (err, res) {
+        response(res);
+    });
+});

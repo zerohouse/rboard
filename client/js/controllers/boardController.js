@@ -29,40 +29,13 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams, 
     });
 
 
-    $scope.$on("$stateChangeSuccess", function updatePage() {
-        var req = $scope.req = {};
-        req.board = $stateParams.url;
-        req.limit = 3;
-        req.skip = 0;
-        req.page = 0;
-        $scope.noMore = false;
-        $scope.getPosts();
-    });
-
-    $scope.getPosts = function () {
-        var req = $scope.req;
-        req.skip = req.limit * req.page;
-        $req('post.get', req, function (res) {
-            if ($scope.articles == undefined)
-                $scope.articles = [];
-            if (res.length == 0) {
-                $scope.noMore = true;
-            }
-            res.forEach(function (each) {
-                $scope.articles.push(each);
-            });
-            req.page++;
-            $scope.$apply();
-        });
-    };
-
-
     $scope.selectResult = function (select) {
         $scope.select = select;
     };
 
     $scope.move = function () {
-        $state.go('board', {url: $scope.select.board});
+        $state.go('board.list', {url: $scope.select.board});
+        $scope.keyword = "";
     };
 
     $scope.keyPress = function (e) {
@@ -88,6 +61,9 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams, 
         }
     }
 
-    $scope.rand = $rand;
+    $scope.rand = function () {
+        $rand();
+        $scope.keyword = "";
+    }
 
 });

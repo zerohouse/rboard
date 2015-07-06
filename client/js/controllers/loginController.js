@@ -11,7 +11,7 @@ app.controller('loginController', function ($scope, $req, $user, $regex, $state,
             return false;
         if (!$regex('user'))
             return false;
-        if ($scope.alreadyExistId)
+        if ($scope.notExistId)
             return false;
         return true;
     };

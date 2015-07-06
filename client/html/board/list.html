@@ -1,0 +1,8 @@
+<div ng-repeat="article in articles" article="article"
+     ui-sref="article({url:stateParams.url, articleId:article._id})"></div>
+
+
+<div ng-click="getPosts()" ng-show="!noMore">더보기</div>
+<div ng-show="noMore">마지막입니다.</div>
+<div ui-view></div>
+<div ui-sref="write({url: stateParams.url})">글쓰기</div>
