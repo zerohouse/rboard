@@ -16,5 +16,8 @@ app.post('/photo/upload', function (req, res) {
     }
     var id = new ObjectID(req.session.user._id);
     db.user.findOneAndUpdate({_id: id}, {$set: {photo: req.files.file.name}}, function () {
+        req.session.user.photo = req.files.file.name;
+        sessionStore.set(req.session.sid, req.session);
+        res.send(req.files.file.name);
     });
 });

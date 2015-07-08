@@ -9,10 +9,15 @@ textarea {
     overflow: hidden;
 }
 
-
 .right {
-    right: 0;
-    top: 0;
+    right: 24px;
+    top: 22px;
+    font-size: 45px;
+}
+
+.non-border.head {
+    font-size: 20px;
+    padding: 20px;
 }
 
 .non-border {

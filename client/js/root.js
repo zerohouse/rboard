@@ -9,6 +9,7 @@ app.controller('root', function ($req, $scope, $state, $stateParams, $user) {
     $scope.logout = function () {
         $req('user.logout', {}, function () {
             $user.logged = false;
+            $state.go('board');
             $scope.$apply();
         });
     };

@@ -25,4 +25,12 @@ Date.prototype.toString = function () {
     }
 };
 
+Array.prototype.contains = function (val) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] == val)
+            return true;
+    }
+    return false;
+};
+
 var app = angular.module('rboard', ['ui.router', 'ngAnimate', 'ngFileUpload']);

@@ -1,5 +1,5 @@
 <header>
-    <div class="top-fix">
+    <div class="top-container">
         <div class="header-icon" ui-sref="board.list({url: stateParams.url})"><i class="fa fa-arrow-left"></i>
         </div>
         <div class="title">
@@ -8,21 +8,38 @@
     </div>
 </header>
 
-<img ng-repeat="photo in article.photos" class="article-photo" src="/client/img/uploads/{{photo}}">
 
-<div>
-    <div class="info"><span class="writer">{{article.writer}}</span> <span class="date">{{article.date}}</span></div>
-    <p>{{article.body}}</p>
-    <span ng-show="user.email == article.writer"><span ng-click="delete()">삭제</span></span>
+<div class="article">
+    <div class="header">
+        <span user="article.writer"></span>
+        <span class="date">{{article.date.toString()}}</span>
+    </div>
+    <div class="body">
+        <div class="head">{{article.head}}</div>
+        <img ng-repeat="photo in article.photos" src="/client/img/uploads/{{photo}}">
+
+        <p>{{article.body}}</p>
+    </div>
+    <div class="footer">
+        <i class="fa fa-heart-o" ng-click="likeToggle()"></i> {{article.like.length}} <i class="fa fa-comment-o"></i>
+        {{replies.length}}
+
+        <div class="relative">
+            <textarea ng-model="reply" placeholder="댓글을 남겨주세요."></textarea>
+
+            <i ng-click="writeReply()" class="fa fa-check"></i>
+        </div>
+        <ul class="reply">
+            <li ng-repeat="reply in replies">
+                <span user="reply.writer"></span>
+                <span class="date"> {{reply.date.toString()}}</span> <span
+                    ng-click="deleteReply(reply)" ng-show="user._id == reply.writer" class="delete">삭제</span>
+                <pre>{{reply.reply}}</pre>
+            </li>
+            <li ng-show="!noMore" ng-click="getReplies()">리플 더보기</li>
+        </ul>
+    </div>
+
 </div>
 
-<ul>
-    <li ng-repeat="reply in replies">{{reply.reply}} written by {{reply.writer}} {{reply.date}} <span
-            ng-click="deleteReply(reply)" ng-show="user.email == reply.writer">삭제</span>
-    </li>
-    <li ng-show="!noMore" ng-click="getReplies()">리플 더보기</li>
 
-</ul>
-<input ng-model="reply" ng-enter="writeReply()">
-
-<div ng-click="writeReply()">리플쓰기</div>

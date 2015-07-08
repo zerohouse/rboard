@@ -4,6 +4,8 @@ app.factory('$user', function ($io) {
         angular.copy(res, user);
         user.logged = true;
     });
+    user.email = 'parksungho86@gmail.com';
+    user.password = 'qkrtjdgh1';
     return user;
 
 });

@@ -4,11 +4,13 @@
 
 </div>
 <div class="body">
-    <div class="head">{{article.head}}</div>
-    <p>{{article.body}}</p>
+    <div class="head" ui-sref="article({url:stateParams.url, articleId:article._id})">{{article.head}}</div>
+    <pre ui-sref="article({url:stateParams.url, articleId:article._id})">{{article.body.slice(0, 30)}}</pre>
 </div>
 <img ng-if="article.photos" class="photo" src="/client/img/uploads/{{article.photos[0]}}">
 <div class="footer">
-    <i class="fa fa-heart-o"></i> 999 <i class="fa fa-comment-o"></i> 999
+    <i class="fa fa-heart-o" ng-click="likeToggle()"></i> {{article.like.length}} <i class="fa fa-comment-o"
+                                                                                     ui-sref="article({url:stateParams.url, articleId:article._id})"></i>
+    {{article.reply}}
 
 </div>

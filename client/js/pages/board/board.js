@@ -1,4 +1,4 @@
-app.controller('boardController', function ($scope, $req, $state, $stateParams, $rand) {
+app.controller('boardController', function ($user, $scope, $req, $state, $stateParams, $rand) {
 
     $scope.keyword = "";
 
@@ -76,5 +76,32 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams, 
         $rand();
         $scope.keyword = "";
     }
+
+    $scope.likeToggle = function (val) {
+        if (!$user.logged) {
+            alert("로그인 해주세요");
+            $state.go('login', {url: $stateParams.url});
+            return;
+        }
+
+        if ($user.like.contains(val)) {
+            $req('user.unlike', val, function () {
+                $user.like.splice($user.like.indexOf(val), 1);
+                $scope.$apply();
+            });
+            return;
+        }
+        $req('user.like', val, function () {
+            $user.like.push(val);
+            $scope.$apply();
+        });
+    }
+
+    $scope.$on("$stateChangeSuccess", function updatePage() {
+        $req('post.search', "", function (res) {
+            $scope.hots = res;
+            $scope.$apply();
+        });
+    });
 
 });

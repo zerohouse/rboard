@@ -23,12 +23,12 @@ header {
 }
 
 .profile {
+    line-height: 35px;
     height: 35px;
     width: 35px;
     display: block;
     position: absolute;
-    right: 4%;
-    background-image: url('/client/imgent/img/profile.png');
+    right: 6%;
     background-size: 100% 100%;
     margin-top: -40px;
     border-radius: 50%;

@@ -1,7 +1,8 @@
-app.controller('articleController', function ($stateParams, $req, $scope, $state) {
+app.controller('articleController', function ($stateParams, $req, $scope, $state, $user) {
     $scope.$on("$stateChangeSuccess", function updatePage() {
         $req('post.findOne', $stateParams.articleId, function (res) {
             $scope.article = res;
+            $scope.article.date = new Date($scope.article.date);
             $scope.$apply();
         });
     });
@@ -19,6 +20,8 @@ app.controller('articleController', function ($stateParams, $req, $scope, $state
     }
 
     $scope.writeReply = function () {
+        if ($scope.reply == "" || $scope.reply == undefined)
+            return;
         var reply = {};
         reply.articleId = $stateParams.articleId;
         reply.reply = $scope.reply;
@@ -27,7 +30,23 @@ app.controller('articleController', function ($stateParams, $req, $scope, $state
                 alert(res.err);
                 return;
             }
+            res.date = new Date(res.date);
             $scope.replies.unshift(res);
+            $scope.reply = "";
+            $scope.$apply();
+        });
+    };
+
+    $scope.likeToggle = function () {
+        if ($scope.article.like.contains($user._id)) {
+            $req('post.unlike', $scope.article._id, function () {
+                $scope.article.like.splice($scope.article.like.indexOf($user._id), 1);
+                $scope.$apply();
+            });
+            return;
+        }
+        $req('post.like', $scope.article._id, function () {
+            $scope.article.like.push($user._id);
             $scope.$apply();
         });
     };
@@ -52,6 +71,7 @@ app.controller('articleController', function ($stateParams, $req, $scope, $state
                 $scope.noMore = true;
             }
             res.forEach(function (each) {
+                each.date = new Date(each.date);
                 $scope.replies.push(each);
             });
             req.page++;
@@ -62,7 +82,10 @@ app.controller('articleController', function ($stateParams, $req, $scope, $state
     $scope.deleteReply = function (reply) {
         if (!confirm("삭제하시겠습니까?"))
             return;
-        $req('reply.delete', reply._id, function (res) {
+        var req = {};
+        req.replyId = reply._id;
+        req.articleId = $scope.article._id;
+        $req('reply.delete', req, function (res) {
             if (res.err) {
                 alert(res.err);
                 return;

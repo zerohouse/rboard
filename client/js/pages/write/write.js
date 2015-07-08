@@ -2,12 +2,25 @@ app.controller('writeController', function ($scope, $req, $stateParams, $state, 
 
     $scope.article = {};
 
+    $scope.$on("$stateChangeSuccess", function updatePage() {
+        if (!$user.logged) {
+            alert("로그인 해주세요");
+            $state.go('login', {url: $stateParams.url});
+            return;
+        }
+    });
+
     $scope.write = function () {
         if (!$user.logged) {
             alert("로그인 해주세요");
             $state.go('login', {url: $stateParams.url});
             return;
         }
+
+        if ($scope.article.body == undefined || $scope.article.body == "")
+            return;
+        if ($scope.article.head == undefined || $scope.article.head == "")
+            $scope.article.head = $scope.article.body.slice(0, 15) + "...";
 
         $scope.article.board = $stateParams.url;
 

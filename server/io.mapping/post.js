@@ -7,6 +7,8 @@ $mapping('post.write', function (post, response, socket) {
     }
     post.writer = socket.session.user._id;
     post.date = new Date();
+    post.reply = 0;
+    post.like = [];
     db.post.insertOne(post, function (err, result) {
         res.err = err;
         res.result = result;
@@ -76,5 +78,30 @@ $mapping('post.findOne', function (articleId, response) {
     var obj_id = new ObjectID(articleId);
     db.post.findOne({_id: obj_id}, function (err, res) {
         response(res);
+    });
+});
+
+
+$mapping('post.like', function (articleId, response, socket) {
+    var res = {};
+    if (socket.session.user == undefined) {
+        res.err = "login";
+        response(res);
+        return;
+    }
+    db.post.findOneAndUpdate({_id: new ObjectID(articleId)}, {$addToSet: {'like': socket.session.user._id}}, function () {
+        response();
+    });
+});
+
+$mapping('post.unlike', function (articleId, response, socket) {
+    var res = {};
+    if (socket.session.user == undefined) {
+        res.err = "login";
+        response(res);
+        return;
+    }
+    db.post.findOneAndUpdate({_id: new ObjectID(articleId)}, {$pull: {'like': socket.session.user._id}}, function () {
+        response();
     });
 });

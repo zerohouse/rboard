@@ -59,3 +59,34 @@
     .write {
     }
 }
+
+.fa-star, .fa-star-o {
+    font-size: 80%;
+    color: #B5D8FF;
+}
+
+.fa-star {
+    color: yellow;
+}
+
+.likes li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.hots li {
+    text-align: left;
+    margin: 20px;
+    padding: 20px;
+    font-size: 25px;
+    border-bottom: 1px dotted #000;
+}
+
+.hots li span {
+    margin: 0 10px;
+}
+
+.hots li span:first-child {
+    color: #999;
+    font-size: 80%;
+}

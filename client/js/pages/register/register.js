@@ -10,6 +10,7 @@ app.controller('registerController', function ($scope, $req, $user, $regex, $sta
                 alert(response.err);
                 return;
             }
+            angular.copy(response.result, $user);
             $user.logged = true;
             if ($stateParams.url == undefined) {
                 $rand();

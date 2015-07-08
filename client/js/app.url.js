@@ -8,7 +8,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             controller: 'boardController',
             templateUrl: "/client/js/pages/board/board.html",
             title: "B.in",
-            searchWindow: true
+            searchWindow: true,
         })
         .state('board.list', {
             url: ":url",

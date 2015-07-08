@@ -1,4 +1,4 @@
-app.controller('loginController', function ($scope, $req, $user, $regex, $state, $stateParams, $rand, userList) {
+app.controller('loginController', function ($scope, $req, $user, $regex, $state, $stateParams, $rand) {
 
     $scope.user = $user;
 
@@ -27,11 +27,11 @@ app.controller('loginController', function ($scope, $req, $user, $regex, $state,
             }
             angular.copy(res.result, $user);
             $user.logged = true;
-            if ($stateParams.url == undefined) {
+            if ($stateParams['url'] == undefined || $stateParams['url'] == "") {
                 $rand();
                 return;
             }
-            $state.go('board', {url: $stateParams.url})
+            $state.go('board.list', {url: $stateParams['url']});
         });
     };
 

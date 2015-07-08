@@ -1,23 +1,26 @@
 <header>
-    <div class="top-fix">
+    <div class="top-container">
         <div class="header-icon" ui-sref="board.list({url: stateParams.url})"><i class="fa fa-arrow-left"></i>
         </div>
         <div class="title">
             {{state.title}}
         </div>
+        <span class="header-icon profile" ng-click="logout()"><i class="fa fa-sign-out"></i></span>
+    </div>
+    <div class="top-container">
+        <div ngf-drop ng-model="photo" class="profile-photo" ngf-select
+             ngf-drag-over-class="profile-photo-hover" ngf-allow-dir="true" ng-style="style"
+             ngf-accept="'image/*'">
+        </div>
+        <div class="info">
+            <div class="email">{{user.email}}</div>
+            <input class="name" ng-model="user.name">
+        </div>
     </div>
 </header>
 
-<div class="jumbotron">
+<span class="label">내가 좋아하는 게시물</span>
 
-    <div class="info">
-        <div ngf-drop ng-model="photo" class="drop-box" ngf-select
-             ngf-drag-over-class="dragover" ngf-allow-dir="true"
-             ngf-accept="'image/*'">사진 업로드
-        </div>
-        <div class="name">{{user.name}}</div>
-        <div class="email">{{user.email}}</div>
-        <input ng-model="user.name">
-    </div>
-
-</div>
+<div ng-repeat="article in articles" article="article"></div>
+<div ng-click="getPosts()" ng-show="!noMore">더보기</div>
+<div ng-show="noMore" class="end"><i class="fa fa-paper-plane-o"></i></div>
