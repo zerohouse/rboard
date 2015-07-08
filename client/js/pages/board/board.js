@@ -38,6 +38,17 @@ app.controller('boardController', function ($scope, $req, $state, $stateParams, 
         $scope.keyword = "";
     };
 
+
+    $scope.showResults = function () {
+        $scope.visible = true;
+    };
+
+    document.body.addEventListener('click', function () {
+        $scope.visible = false;
+        $scope.$apply();
+    });
+
+
     $scope.keyPress = function (e) {
         if ($scope.results.length == 0)
             return;

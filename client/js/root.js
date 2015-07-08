@@ -16,4 +16,6 @@ app.controller('root', function ($req, $scope, $state, $stateParams, $user) {
     $scope.user = $user;
 
     $scope.states = $state.get();
+
+
 });

@@ -45,7 +45,7 @@ module.exports = function (grunt) {
             },
             all: {
                 src: [
-                    "client/css/**/*.css",
+                    "client/**/*.css",
                     "!client/css/css.css"
                 ],
                 dest: "client/css/css.css"

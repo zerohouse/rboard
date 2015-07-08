@@ -5,7 +5,7 @@ $mapping('post.write', function (post, response, socket) {
         response(res);
         return;
     }
-    post.writer = socket.session.user.email;
+    post.writer = socket.session.user._id;
     post.date = new Date();
     db.post.insertOne(post, function (err, result) {
         res.err = err;
@@ -60,7 +60,7 @@ $mapping('post.delete', function (articleId, response, socket) {
         response("로그인 해주세요.");
         return;
     }
-    db.post.remove({_id: obj_id, writer: socket.session.user.email}, function (err, res) {
+    db.post.remove({_id: obj_id, writer: socket.session.user._id}, function (err, res) {
         if (res.result.ok == 1) {
             response(true);
             return;

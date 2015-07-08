@@ -9,14 +9,6 @@ textarea {
     overflow: hidden;
 }
 
-.input {
-    width: 90%;
-    outline: none;
-    border: 1px solid #999;
-    padding: 10px;
-    margin: 10px;
-    line-height: 15px;
-}
 
 .right {
     right: 0;

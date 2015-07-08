@@ -1,3 +1,18 @@
+$mapping('user', function (id, response) {
+    console.log(id);
+    var key = new ObjectID(id);
+    db.user.findOne({_id: key}, function (err, result) {
+        var res = {};
+        res.err = err;
+        if (result != null)
+            result.password = undefined;
+        res.result = result;
+        console.log(result);
+        response(res);
+    });
+});
+
+
 $mapping('user.register', function (user, response, socket) {
     db.user.insertOne(user, function (err, result) {
         var res = {};

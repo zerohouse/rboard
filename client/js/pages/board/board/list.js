@@ -1,6 +1,5 @@
 app.controller('listController', function ($scope, $req, $stateParams) {
 
-
     $scope.$on("$stateChangeSuccess", function updatePage() {
         var req = $scope.req = {};
         req.board = $stateParams.url;
@@ -17,7 +16,7 @@ app.controller('listController', function ($scope, $req, $stateParams) {
         $req('post.get', req, function (res) {
             if ($scope.articles == undefined)
                 $scope.articles = [];
-            if (res.length == 0) {
+            if (res.length < req.limit) {
                 $scope.noMore = true;
             }
             res.forEach(function (each) {

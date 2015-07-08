@@ -1,18 +1,20 @@
+
 .search-results {
-    border: 1px solid #999;
+    position: absolute;
+    border: 1px solid #E5E5E5;
     border-top: none;
-    margin: 0 10px;
-    margin-top: -10px;
+    margin-top: -19px;
+    color: black;
     width: 90%;
-    padding: 0 10px;
-    padding-top: 1px;
+    left: 5%;
+    background-color: white;
 }
 
 .search-results li {
-    margin: 10px 0;
+    margin: 10px;
+    padding: 15px;
     border-bottom: 1px solid #eee;
 }
-
 
 .search-results li.selected {
     background-color: #eeeeee;
@@ -22,12 +24,6 @@
     font-weight: 900;
     font-size: 130%;
     margin-right: 10px;
-}
-
-.search-icon {
-    position: absolute;
-    right: 20px;
-    top: 80px;
 }
 
 .badge {
@@ -43,4 +39,23 @@
     vertical-align: middle;
     background-color: #777;
     border-radius: 10px;
+}
+
+.write {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    font-size: 30px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #7bb4e7;
+    color: white;
+    padding: 10px;
+    box-shadow: 2px 2px 2px silver;
+}
+
+@media screen and (min-width: 600px) {
+    .write {
+    }
 }

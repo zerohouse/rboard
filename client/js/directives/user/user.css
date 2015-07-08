@@ -1,0 +1,15 @@
+[user] .photo {
+    height: 35px;
+    width: 35px;
+    display: inline-block;
+    background-image: url('/client/img/profile.png');
+    background-size: 100% 100%;
+    border-radius: 50%;
+    margin: 0 10px;
+    float: left;
+}
+
+[user] .name {
+    height: 35px;
+    line-height: 35px;
+}

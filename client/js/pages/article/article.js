@@ -33,8 +33,6 @@ app.controller('articleController', function ($stateParams, $req, $scope, $state
     };
 
     $scope.$on("$stateChangeSuccess", function updatePage() {
-
-        console.log(1);
         var req = $scope.req = {};
         req.articleId = $stateParams.articleId;
         req.limit = 50;
@@ -47,11 +45,10 @@ app.controller('articleController', function ($stateParams, $req, $scope, $state
     $scope.getReplies = function () {
         var req = $scope.req;
         req.skip = req.limit * req.page;
-        console.log(req);
         $req('reply.get', req, function (res) {
             if ($scope.replies == undefined)
                 $scope.replies = [];
-            if (res.length == 0) {
+            if (res.length < req.limit) {
                 $scope.noMore = true;
             }
             res.forEach(function (each) {

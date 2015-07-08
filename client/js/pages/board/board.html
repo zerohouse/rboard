@@ -1,0 +1,28 @@
+<header>
+    <div class="top-container" ng-click="state.searchWindow = !state.searchWindow">
+        <div class="header-icon"><i class="fa fa-bars"></i>
+        </div>
+        <div class="title">{{state.title || stateParams.url}}</div>
+        <div class="profile">
+            <span ng-show="user.logged"><span ui-sref="myPage({url: stateParams.url})">{{user.email}}</span><span
+                    ng-click="logout()">로그아웃</span></span>
+
+            <span ng-show="!user.logged" ui-sref="login({url: stateParams.url})">로그인</span>
+        </div>
+    </div>
+    <div class="top-container" ng-show="state.searchWindow">
+        <input class="input search" ng-model="keyword" ng-keydown="keyPress($event)"
+               ng-focus="showResults();$event.stopPropagation();"
+               ng-click='$event.stopPropagation();' placeholder="검색어를 입력하세요"><i
+            class="fa fa-search search-icon"></i>
+        <ul ng-show="visible && results.length != 0" class="search-results" ng-show="results.length!=0">
+            <li ng-repeat="result in results" ng-click="move()" ng-mouseover="selectResult(result)"
+                ng-class="{'selected':result == select}">
+                <span>{{result.board}}</span><span class="badge">{{result.count}}</span></li>
+        </ul>
+        <div class="input rand" ng-click="rand()">랜덤보드</div>
+    </div>
+</header>
+
+
+<div ui-view></div>

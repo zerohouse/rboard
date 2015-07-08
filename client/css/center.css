@@ -1,7 +1,7 @@
 .center {
     position: absolute;
-    transform: translateY(-50%);
-    top: 50%;
+    /*transform: translateY(-50%);*/
+    /*top: 50%;*/
     text-align: center;
     margin: auto;
     width: 100%;
@@ -10,5 +10,5 @@
 .center-content {
     position: relative;
     margin: auto;
-    max-width: 400px;
+    max-width: 600px;
 }

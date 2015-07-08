@@ -1,0 +1,23 @@
+<header>
+    <div class="top-fix">
+        <div class="header-icon" ui-sref="board.list({url: stateParams.url})"><i class="fa fa-arrow-left"></i>
+        </div>
+        <div class="title">
+            {{state.title}}
+        </div>
+    </div>
+</header>
+
+<div class="jumbotron">
+
+    <div class="info">
+        <div ngf-drop ng-model="photo" class="drop-box" ngf-select
+             ngf-drag-over-class="dragover" ngf-allow-dir="true"
+             ngf-accept="'image/*'">사진 업로드
+        </div>
+        <div class="name">{{user.name}}</div>
+        <div class="email">{{user.email}}</div>
+        <input ng-model="user.name">
+    </div>
+
+</div>

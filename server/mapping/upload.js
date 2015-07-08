@@ -8,3 +8,13 @@ app.post('/post/upload', function (req, res) {
         });
     res.send(files);
 });
+
+app.post('/photo/upload', function (req, res) {
+    if (req.session.user == undefined) {
+        res.send("잘못된 접근");
+        return;
+    }
+    var id = new ObjectID(req.session.user._id);
+    db.user.findOneAndUpdate({_id: id}, {$set: {photo: req.files.file.name}}, function () {
+    });
+});

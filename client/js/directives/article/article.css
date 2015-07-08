@@ -1,0 +1,42 @@
+[article] {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #D3D3D3;
+    text-align: left;
+}
+
+[article] .header, [article] .body, [article] .footer {
+    padding: 20px 10px;
+}
+
+[article] .header {
+    border-bottom: 1px solid #eee;
+}
+
+[article] .head {
+    font-size: 200%;
+    font-weight: 900;
+    margin-bottom: 15px;
+}
+
+[article] .photo {
+    width: 100%;
+    max-height: 150px;
+}
+
+[article] i {
+    font-size: 130%;
+    margin-left: 10px;
+    color: #7bb4e7;
+}
+
+[article] .date {
+    float: right;
+    color: #9E9E9E;
+    font-size: 70%;
+    line-height: 30px;
+}
+
+.article-photo {
+    max-width: 50%;
+}

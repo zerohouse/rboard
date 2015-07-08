@@ -1,7 +1,10 @@
 app.factory('$rand', function ($req, $state, $stateParams) {
     return function () {
         $req('post.search', "", function (res) {
-            $state.go('board.list', {url: rand(res)});
+            var url = rand(res);
+            if (url == $stateParams.url || url == "" || url == undefined)
+                url = ['냉장고', '메르스', '박근혜', '이관호', '연평해전', '치인트', '하이브', '수지', '비정상회담', '피카소'][parseInt(Math.random() * 10)];
+            $state.go('board.list', {url: url});
         });
 
         function rand(arr) {
