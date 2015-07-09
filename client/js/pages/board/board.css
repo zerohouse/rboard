@@ -8,6 +8,7 @@
     width: 90%;
     left: 5%;
     background-color: white;
+    z-index: 1;
 }
 
 .search-results li {
