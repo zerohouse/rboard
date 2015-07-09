@@ -17,7 +17,7 @@ app.controller('articleController', function ($stateParams, $req, $scope, $state
             }
             $state.go('board.list', {url: $stateParams.url});
         });
-    }
+    };
 
     $scope.writeReply = function () {
         if ($scope.reply == "" || $scope.reply == undefined)
