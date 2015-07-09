@@ -20,7 +20,7 @@
         <div class="head">{{article.head}}</div>
         <img ng-repeat="photo in article.photos" src="/client/img/uploads/{{photo}}">
 
-        <p>{{article.body}}</p>
+        <p ng-bind-html="article.body.newLine()"></p>
     </div>
     <div class="footer">
         <i class="fa fa-heart-o" ng-click="likeToggle()"></i> {{article.like.length}} <i class="fa fa-comment-o"></i>
@@ -36,7 +36,8 @@
                 <span user="reply.writer"></span>
                 <span class="date"> {{reply.date.toString()}}</span> <span
                     ng-click="deleteReply(reply)" ng-show="user._id == reply.writer" class="delete">삭제</span>
-                <pre>{{reply.reply}}</pre>
+
+                <p ng-bind-html="reply.reply.newLine()"></p>
             </li>
             <li ng-show="!noMore" ng-click="getReplies()">리플 더보기</li>
         </ul>

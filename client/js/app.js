@@ -33,4 +33,8 @@ Array.prototype.contains = function (val) {
     return false;
 };
 
-var app = angular.module('rboard', ['ui.router', 'ngAnimate', 'ngFileUpload']);
+String.prototype.newLine = function () {
+    return this.replace(/\n/g, '<br>');
+};
+
+var app = angular.module('rboard', ['ui.router', 'ngAnimate', 'ngFileUpload', 'ngSanitize']);

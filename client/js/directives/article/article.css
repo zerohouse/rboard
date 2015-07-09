@@ -20,8 +20,7 @@
 }
 
 [article] .photo {
-    width: 100%;
-    max-height: 150px;
+    max-width: 100%;
 }
 
 [article] i {
@@ -41,6 +40,11 @@
     padding: 20px !important;
 }
 
-.article-photo {
-    max-width: 50%;
+.crop {
+    width: 100%;
+    max-height: 150px;
+    overflow: hidden;
+}
+
+.crop img {
 }

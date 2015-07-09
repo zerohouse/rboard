@@ -3,11 +3,14 @@
     <span class="date">{{article.date.toString()}}</span>
 
 </div>
-<div class="body">
-    <div class="head" ui-sref="article({url:stateParams.url, articleId:article._id})">{{article.head}}</div>
-    <pre ui-sref="article({url:stateParams.url, articleId:article._id})">{{article.body.slice(0, 30)}}</pre>
+<div class="body" ui-sref="article({url:stateParams.url, articleId:article._id})">
+    <div class="head">{{article.head}}</div>
+    <p ng-bind-html="article.body.slice(0,30).newLine()"></p>
 </div>
-<img ng-if="article.photos" class="photo" src="/client/img/uploads/{{article.photos[0]}}">
+<div class="crop">
+    <img ng-if="article.photos" class="photo" src="/client/img/uploads/{{article.photos[0]}}">
+</div>
+
 <div class="footer">
     <i class="fa fa-heart-o" ng-click="likeToggle()"></i> {{article.like.length}} <i class="fa fa-comment-o"
                                                                                      ui-sref="article({url:stateParams.url, articleId:article._id})"></i>
