@@ -1,10 +1,10 @@
-app.directive('articleList', function () {
+app.directive('list', function () {
 
     return {
         restrict: "A",
-        templateUrl: "/client/js/pages/articleList/articleList.html",
+        templateUrl: "/client/js/directives/list/list.html",
         scope: {
-            articleList: '@'
+            list: '@'
         },
         controller: function ($state, $user, $req, $scope) {
             function init() {
@@ -23,8 +23,7 @@ app.directive('articleList', function () {
             $scope.getPosts = function () {
                 var req = $scope.req;
                 req.skip = req.limit * req.page;
-                console.log($scope.articleList);
-                $req($scope.articleList, req, function (res) {
+                $req($scope.list, req, function (res) {
                     if ($scope.articles == undefined)
                         $scope.articles = [];
                     if (res.length < req.limit) {
@@ -34,7 +33,6 @@ app.directive('articleList', function () {
                         $scope.articles.push(each);
                     });
                     req.page++;
-                    console.log(res);
                     $scope.$apply();
                 });
             };
