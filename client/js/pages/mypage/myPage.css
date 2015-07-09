@@ -36,4 +36,6 @@ input.name {
 
 .bold {
     font-weight: 900;
+    border-bottom: 2px solid #7BB4E7;
+    color: #7BB4E7;
 }
