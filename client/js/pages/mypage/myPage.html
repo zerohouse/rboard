@@ -19,8 +19,8 @@
     </div>
 </header>
 
-<span class="label">내가 좋아하는 게시물</span>
+<span class="label" ng-click="state='like'" ng-class="{'bold':state=='like'}" ng-init="state='like'">내가 좋아하는 게시물</span>
+<span class="label" ng-click="state='my'" ng-class="{'bold':state=='my'}">내가 쓴글</span>
+<div ng-show="state=='like'" article-list="user.favorite"></div>
 
-<div ng-repeat="article in articles" article="article"></div>
-<div ng-click="getPosts()" ng-show="!noMore">더보기</div>
-<div ng-show="noMore" class="end"><i class="fa fa-paper-plane-o"></i></div>
+<div ng-show="state=='my'" article-list="user.my"></div>

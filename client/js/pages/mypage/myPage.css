@@ -33,3 +33,7 @@ input.name {
     color: #999;
     margin: 20px;
 }
+
+.bold {
+    font-weight: 900;
+}

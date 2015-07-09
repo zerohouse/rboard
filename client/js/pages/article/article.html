@@ -12,8 +12,10 @@
 <div class="article">
     <div class="header">
         <span user="article.writer"></span>
-        <span class="date">{{article.date.toString()}}</span>
+        <span ng-click="deleteArticle()" ng-show="user._id == article.writer" class="delete">삭제</span>
+        <span class="date">{{article.date.toString()}} </span>
     </div>
+
     <div class="body">
         <div class="head">{{article.head}}</div>
         <img ng-repeat="photo in article.photos" src="/client/img/uploads/{{photo}}">

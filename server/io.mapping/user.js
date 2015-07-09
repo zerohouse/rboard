@@ -113,3 +113,12 @@ $mapping('user.favorite', function (req, response, socket) {
         response(result);
     });
 });
+
+$mapping('user.my', function (req, response, socket) {
+    db.post.find({"writer": socket.session.user._id.toString()}, {}, {
+        skip: req.skip,
+        limit: req.limit
+    }).sort({_id: -1}).toArray(function (err, result) {
+        response(result);
+    });
+});

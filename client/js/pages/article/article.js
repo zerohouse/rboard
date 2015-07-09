@@ -94,4 +94,18 @@ app.controller('articleController', function ($stateParams, $req, $scope, $state
             $scope.$apply();
         });
     }
+
+
+    $scope.deleteArticle = function () {
+        if (!confirm("삭제하시겠습니까?"))
+            return;
+
+        $req('post.delete', $scope.article._id, function (res) {
+            if (res.err) {
+                alert(res.err);
+                return;
+            }
+            $state.go('board.list', {url: $stateParams.url});
+        });
+    }
 });
